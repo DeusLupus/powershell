@@ -1,14 +1,16 @@
 #declare path where excel is stored.
-$file =
-$sheetname = "sheet1"
+$file = "C:\Users\Deus_\Desktop\PowerShell Tutorials\powershell\readexcel\readcsvtest.xlsx"
+$sheetname = "readcsvtest"
 
-$objExcel = New-Object -ComObject Excel.Application
-$workbook = $objExcel.Workbooks.Open($file)
-$objExcel.Visible=$false
+#create xl object
+$xl = New-Object -ComObject Excel.Application
 
-$rowMax = ($sheet.UsedRange.Rows).count
+#disable the visible property
+$xl.visible = $false
 
-$rowName.$colName = 1,1
-$rowAge.$colAge = 1,2
-$rowCity,$colCity = 1,3
+#open excel file data in $wb variable
+$wb = $objExcel.Workbooks.Open($file)
+
+#select correct worksheet
+$ws = $wb.sheets.item("readcsvtest")
 
