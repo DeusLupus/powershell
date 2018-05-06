@@ -20,7 +20,7 @@ for ($i=1; $i -le $rowMax - 1; $i++) {
     $serial = $sheet.Cells.Item($rowSerial + $i,$colSerial).text
     $asset = $sheet.Cells.Item($rowAsset + $i,$colAsset).text
 
-    #use write host to check data
+    #use write host to check data, eventually replace with copy and paste
     Write-Host ("Serial Number: " + $serial)
     Write-Host ("Asset Tag: " + $asset)
 }
