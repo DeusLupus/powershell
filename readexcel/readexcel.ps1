@@ -2,15 +2,28 @@
 $file = "C:\Users\Deus_\Desktop\PowerShell Tutorials\powershell\readexcel\readcsvtest.xlsx"
 $sheetname = "readcsvtest"
 
-#create xl object
-$xl = New-Object -ComObject Excel.Application
+#create an instance and open excel
+$objExcel = New-Object -ComObject Excel.Application
+$workbook = $objExcel.workbooks,Open($file)
+$sheet = $workbook.Worksheets.Item($sheetname)
+$objExcel.Visible=$false
 
-#disable the visible property
-$xl.visible = $false
+#get max rows
+$rowMax = ($sheet.UsedRange.Rows).count
 
-#open excel file data in $wb variable
-$wb = $objExcel.Workbooks.Open($file)
+#declare starting position for each column
+$rowSerial,$colSerial = 1,1
+$rowAsset,$colAsset = 1,2
 
-#select correct worksheet
-$ws = $wb.sheets.item("readcsvtest")
+#loop through each row and store each variable
+for ($i=1; $i -le $rowMax - 1; $i++) {
+    $serial = $sheet.Cells.Item($rowSerial + $i,$colSerial).text
+    $asset = $sheet.Cells.Item($rowAsset + $i,$colAsset).text
 
+    #use write host to check data
+    Write-Host ("Serial Number: " + $serial)
+    Write-Host ("Asset Tag: " + $asset)
+}
+
+#close excel or it will be locked for editing
+$objExcel.quit()
