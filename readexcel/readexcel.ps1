@@ -4,7 +4,7 @@ $sheetname = "readcsvtest"
 
 #create an instance and open excel
 $objExcel = New-Object -ComObject Excel.Application
-$workbook = $objExcel.workbooks,Open($file)
+$workbook = $objExcel.workbooks.Open($file)
 $sheet = $workbook.Worksheets.Item($sheetname)
 $objExcel.Visible=$false
 
