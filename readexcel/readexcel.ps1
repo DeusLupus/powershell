@@ -17,13 +17,25 @@ $rowAsset,$colAsset = 1,2
 
 #loop through each row and store each variable, add to clipboard, paste and wait a second
 for ($i=1; $i -le $rowMax - 1; $i++) {
-    $serial = $sheet.Cells.Item($rowSerial + $i,$colSerial).text | Set-Clipboard
-    #paste here
-    Start-Sleep -s 2
+    $serial = $sheet.Cells.Item($rowSerial + $i,$colSerial).text
+    $asset = $sheet.Cells.Item($rowAsset + $i,$colAsset).text
 
-    $asset = $sheet.Cells.Item($rowAsset + $i,$colAsset).text | Set-Clipboard
-    #paste here
-    Start-Sleep -s 2
+    <#
+    $wshell = New-Object -ComObject wscript.shell
+    $wshell.AppActivate('notepad')
+    Sleep 1
+    $wshell.SendKeys($serial)
+    Sleep 1
+    $wshell.SendKeys('~')
+    Sleep 1
+    $wshell.SendKeys($asset)
+    Sleep 1
+    $wshell.SendKeys('~')
+    Sleep 1
+    $wshell.SendKeys($serial)
+    Sleep 1
+    $wshell.SendKeys('~')
+    #>
 
     #use write host to check data, eventually replace with copy and paste
     Write-Host ("Serial Number: " + $serial)
