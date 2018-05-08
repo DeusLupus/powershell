@@ -15,10 +15,15 @@ $rowMax = ($sheet.UsedRange.Rows).count
 $rowSerial,$colSerial = 1,1
 $rowAsset,$colAsset = 1,2
 
-#loop through each row and store each variable
+#loop through each row and store each variable, add to clipboard, paste and wait a second
 for ($i=1; $i -le $rowMax - 1; $i++) {
-    $serial = $sheet.Cells.Item($rowSerial + $i,$colSerial).text
-    $asset = $sheet.Cells.Item($rowAsset + $i,$colAsset).text
+    $serial = $sheet.Cells.Item($rowSerial + $i,$colSerial).text | Set-Clipboard
+    #paste here
+    Start-Sleep -s 2
+
+    $asset = $sheet.Cells.Item($rowAsset + $i,$colAsset).text | Set-Clipboard
+    #paste here
+    Start-Sleep -s 2
 
     #use write host to check data, eventually replace with copy and paste
     Write-Host ("Serial Number: " + $serial)
